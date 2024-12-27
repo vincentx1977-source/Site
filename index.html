@@ -50,11 +50,13 @@
 
     // Cambia l'URL dell'iframe in base alla lingua
     function setIframeUrl() {
-      const lang = getLanguage();
-      const iframe = document.getElementById('canva-iframe');
+      const lang 		= getLanguage();
+      const iframe	= document.getElementById('canva-iframe');
       
 			//console.log("Lingua rilevata _ B :", lang);
-			
+			iframe.loading="lazy";
+			iframe.style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+
       // Imposta l'URL in base alla lingua
 			if (lang === 'it') {
         iframe.src = "https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed"; // Aggiungi parametro per lingua italiana
