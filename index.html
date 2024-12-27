@@ -34,10 +34,33 @@
 <body>
   <!-- Contenitore per l'iframe -->
   <div class="canva-container">
-    <iframe loading="lazy"
-      src="https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed"
-      allowfullscreen="allowfullscreen" allow="fullscreen">
+    <iframe id="canva-iframe" loading="lazy"
+      src="" allowfullscreen="allowfullscreen" allow="fullscreen">
     </iframe>
   </div>
+
+  <script>
+    // Funzione per ottenere la lingua preferita dal browser
+    function getLanguage() {
+      let lang = navigator.language || navigator.userLanguage;
+      return lang.split('-')[0]; // Restituisce solo il codice della lingua (es. "en" per inglese, "it" per italiano)
+    }
+
+    // Cambia l'URL dell'iframe in base alla lingua
+    function setIframeUrl() {
+      const lang = getLanguage();
+      const iframe = document.getElementById('canva-iframe');
+      
+      // Imposta l'URL in base alla lingua
+			if (lang === 'it') {
+        iframe.src = "https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed"; // Aggiungi parametro per lingua italiana
+      } else {
+        iframe.src = "https://www.canva.com/design/DAGaeDFPs4Q/mRtW57n30T1XwOC9C9cnLA/view?embed"; // Default in caso di lingua non riconosciuta
+      }
+    }
+
+    // Esegui la funzione per impostare l'URL all'avvio
+    window.onload = setIframeUrl;
+  </script>
 </body>
 </html>
