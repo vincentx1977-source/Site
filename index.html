@@ -43,6 +43,8 @@
     // Funzione per ottenere la lingua preferita dal browser
     function getLanguage() {
       let lang = navigator.language || navigator.userLanguage;
+			//lang = "en-US";
+			//console.log("Lingua rilevata _ A :", lang);
       return lang.split('-')[0]; // Restituisce solo il codice della lingua (es. "en" per inglese, "it" per italiano)
     }
 
@@ -51,6 +53,8 @@
       const lang = getLanguage();
       const iframe = document.getElementById('canva-iframe');
       
+			//console.log("Lingua rilevata _ B :", lang);
+			
       // Imposta l'URL in base alla lingua
 			if (lang === 'it') {
         iframe.src = "https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed"; // Aggiungi parametro per lingua italiana
