@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Incorporamento Canva</title>
+  <title>Eye&Light team</title>
   <style>
     /* Stili generali */
     body {
@@ -14,55 +14,61 @@
     /* Contenitore del sito Canva */
     .canva-container {
       position: relative;
-      width: 100%;
-      height: 500vh; /* Altezza dinamica: si adatta alla finestra del browser */
-      overflow: hidden;
+      width: 100%; /* Larghezza adattata alla finestra */
+      height: 0; /* Altezza dinamica basata sul padding */
+      padding-top: 100%; /* Altezza proporzionale alla larghezza */
+      overflow: hidden; /* Nasconde contenuti che eccedono il contenitore */
       display: flex;
       justify-content: center;
       align-items: center;
     }
     /* Stile dell'iframe */
     iframe {
-      transform: scale(1.0); /* Scala il contenuto del sito per migliorare la leggibilità */
-      transform-origin: top center; /* Punto di origine della scala */
-      width: 100%;
-      height: 100%;
-      border: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; /* Larghezza sempre adattata */
+      height: 100%; /* Altezza proporzionale alla larghezza */
+      border: none; /* Nessun bordo */
     }
   </style>
 </head>
 <body>
   <!-- Contenitore per l'iframe -->
   <div class="canva-container">
-    <iframe id="canva-iframe" loading="lazy"
-      src="" allowfullscreen="allowfullscreen" allow="fullscreen">
+    <iframe id="canva-iframe" loading="lazy" 
+            src="" allowfullscreen="allowfullscreen" allow="fullscreen">
     </iframe>
   </div>
+  
+  <!-- Link di credito -->
+  <p id="link-credit" style="text-align: center; color: #fff; margin-top: 1em;"></p>
 
   <script>
     // Funzione per ottenere la lingua preferita dal browser
     function getLanguage() {
-      let lang = navigator.language || navigator.userLanguage;
+      let lang = navigator.language || navigator.userLanguage;// esempio altra lingua lang = "en-US";
 			//lang = "en-US";
-			//console.log("Lingua rilevata _ A :", lang);
       return lang.split('-')[0]; // Restituisce solo il codice della lingua (es. "en" per inglese, "it" per italiano)
     }
 
-    // Cambia l'URL dell'iframe in base alla lingua
+    // Cambia l'URL dell'iframe e il link di credito in base alla lingua
     function setIframeUrl() {
-      const lang 		= getLanguage();
-      const iframe	= document.getElementById('canva-iframe');
+      const lang = getLanguage();
+      const iframe = document.getElementById('canva-iframe');
+      const credit = document.getElementById('link-credit');
       
-			//console.log("Lingua rilevata _ B :", lang);
-			iframe.loading="lazy";
-			iframe.style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
-
-      // Imposta l'URL in base alla lingua
-			if (lang === 'it') {
-        iframe.src = "https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed"; // Aggiungi parametro per lingua italiana
+      if (lang === 'it') {
+        iframe.src = "https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?embed";
+        credit.innerHTML = `<a href="https://www.canva.com/design/DAGadsxwfXc/AC6tR6emAzyNRBT6sKNZzw/view?utm_content=DAGadsxwfXc&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener" style="color: #fff;">Site Eye&amp;Light Ita</a> di Vincent X`;
+				iframe.style.width = '100%'; // Larghezza al 100%
+				iframe.style.height = `386%`; // Altezza calcolata
       } else {
-        iframe.src = "https://www.canva.com/design/DAGaeDFPs4Q/mRtW57n30T1XwOC9C9cnLA/view?embed"; // Default in caso di lingua non riconosciuta
-      }
+        iframe.src = "https://www.canva.com/design/DAGaeDFPs4Q/mRtW57n30T1XwOC9C9cnLA/view?embed";
+        credit.innerHTML = `<a href="https://www.canva.com/design/DAGaeDFPs4Q/mRtW57n30T1XwOC9C9cnLA/view?utm_content=DAGaeDFPs4Q&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener" style="color: #fff;">Site Eye&amp;Light Eng</a> by Vincent X`;
+ 				iframe.style.width = '100%'; // Larghezza al 100%
+				iframe.style.height = `250%`; // Altezza calcolata
+     }
     }
 
     // Esegui la funzione per impostare l'URL all'avvio
@@ -70,3 +76,4 @@
   </script>
 </body>
 </html>
+
